@@ -6,8 +6,9 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import {get, post} from './request/http';
+import VueRouter from 'vue-router';
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios, VueRouter)
 
 Vue.prototype.$post=post;
 Vue.prototype.$get=get;
