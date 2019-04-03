@@ -5,8 +5,6 @@
 </template>
 
 <style>
-  @import "./assets/css/bootstrap.min.css";
-
   .loading {
     max-width: 200px;
   }
@@ -14,6 +12,12 @@
   .float-right {
     float: right;
   }
+
+  @media (max-width: 400px){
+  .max-400-column{
+    flex-direction: column;
+  }
+}
 
 </style>
 <script>

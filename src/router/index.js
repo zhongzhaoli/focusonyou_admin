@@ -5,6 +5,7 @@ import register from '@/components/register/register'
 import index from '@/components/index/index'
 import appeal from '@/components/appeal/appeal'
 import proposal from '@/components/proposal/proposal'
+import takeout from '@/components/takeout/takeout'
 
 
 Vue.use(Router)
@@ -38,6 +39,11 @@ export default new Router({
       path: '/proposal',
       name: 'proposal',
       component: proposal
+    },
+    {
+      path: '/takeout',
+      name: 'takeout',
+      component: takeout
     }
   ]
 })
