@@ -34,22 +34,24 @@
       <img class="loading" src="../../assets/loading_2.gif" alt="">
     </div>
     <div class="container d-flex h-100">
-      <div class="card mt-4" v-for="i in mes">
-        <div class="card-header flex_space">
-          <span>{{ (i.nickname) ? i.nickname : "匿名用户" }}</span>
-          <span>{{ i.create_time }}</span>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title music">{{ (i.music) ? "音乐：" + i.music : "音乐：无" }}</h5>
-          <h5 class="card-title music">{{ (i.contact) ? "联系方式：" + i.contact : "联系方式：无" }}</h5>
-          <p class="card-text">{{ i.story }}</p>
+      <div class="w-100">
+        <div class="card mt-4" v-for="i in mes">
+          <div class="card-header flex_space">
+            <span>{{ (i.nickname) ? i.nickname : "匿名用户" }}</span>
+            <span>{{ i.create_time }}</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title music">{{ "类型：" + i.type_text }}</h5>
+            <h5 class="card-title music">{{ (i.contact) ? "联系方式：" + i.contact : "联系方式：无" }}</h5>
+            <p class="card-text">{{ i.proposal }}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <style lang="less">
-  @import "./appeal.less";
+  @import "./proposal.less";
 
 </style>
 <script>
@@ -63,7 +65,7 @@
     created() {
       const that = this;
       this.loading = true;
-      this.$get('/appeal/appeal').then(mes => {
+      this.$get('/appeal/proposal').then(mes => {
         that.mes = mes;
         this.loading = false;
       })

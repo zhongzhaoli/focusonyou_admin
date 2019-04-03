@@ -1,6 +1,9 @@
 <template class="w-100 h-100">
   <div class="container d-flex align-items-center justify-content-center h-100 flex-column">
-    <div class="">
+    <div class="text-center" v-if="loading">
+      <img class="loading" src="../../assets/loading_2.gif" alt="">
+    </div>
+    <div class="" v-if="!loading">
       <h2 class="title text-center">FocusOnYou管理员系统</h2>
       <div class="mt-4">
         <div class="form-group">
@@ -36,6 +39,7 @@
         error_name: "",
         error_password: "",
         error_c_password: "",
+        loading: false
       }
     },
     created() {
@@ -52,6 +56,7 @@
       register() {
         this.init();
         const that = this;
+        this.loading = true;
         this.$post('/register', {
           'password': this.password,
           'c_password': this.c_password,
@@ -59,6 +64,7 @@
         }).then(mes => {
           this.$router.push('/login');
         }, mes => {
+          this.loading = false;
           for (var i in mes.data) {
             that["error_" + i] = mes.data[i][0];
           }

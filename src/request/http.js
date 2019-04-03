@@ -2,7 +2,6 @@
  * axios封装：请求拦截，响应拦截，错误编码
  */
 import axios from 'axios'
-const urls = "http://10.1.53.149:7889";
 
 const getCookie = function (name) {
   var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
@@ -107,7 +106,7 @@ axios.interceptors.response.use(
  */
 export function get(url, params = {}) {
   return new Promise((resolve, reject) => {
-    axios.get(urls + url, params)
+    axios.get(process.env.API_URL + url, params)
       .then(res => {
         resolve(res.data)
       })
@@ -123,7 +122,7 @@ export function get(url, params = {}) {
  */
 export function post(url, params) {
   return new Promise((resolve, reject) => {
-    axios.post(urls + url, params)
+    axios.post(process.env.API_URL + url, params)
       .then(res => {
         resolve(res.data);
       }).catch(err => {
