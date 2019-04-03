@@ -19,8 +19,7 @@
 <script>
   export default {
     name: 'App',
-    created() {
-    }
+    created() {}
   }
 
 </script>
