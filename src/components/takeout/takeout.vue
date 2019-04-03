@@ -112,6 +112,8 @@
             this.start_time = "";
             this.end_time = "";
             this.phone = "";
+        },
+        error_init(){
             this.error_name = "";
             this.error_cover = "";
             this.error_menu = "",
@@ -155,12 +157,13 @@
         },
         takeout_upload(){
             var arr = [];
-            this.init();
+            this.error_init();
             var that = this;
             arr.push(this.cover);
             arr.push(this.menu);
             this.$post('/takeout',{"cover": arr[0], "menu": arr[1], "name": this.name, "start_time": this.start_time, "end_time": this.end_time, "phone": this.phone}).then(mes => {
                 alert("提交成功");
+                this.init();
             }, mes => {
                 for (var i in mes.data) {
                     that["error_" + i] = mes.data[i][0];
