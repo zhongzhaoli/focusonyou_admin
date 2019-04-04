@@ -26,7 +26,7 @@
 </style>
 <script>
   import {
-    setCookie
+    setCookie, delCookie
   } from '../../assets/js/cookie';
 
   export default {
@@ -54,6 +54,7 @@
           'name': this.name,
           'password': this.password
         }).then(mes => {
+          delCookie("api_token");
           setCookie('api_token', mes.message.token);
           this.$router.push('/index');
         }, mes => {
