@@ -26,7 +26,7 @@
 </style>
 <script>
   import {
-    setCookie
+    setCookie, delCookie
   } from '../../assets/js/cookie';
 
   export default {
