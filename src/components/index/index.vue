@@ -62,12 +62,14 @@
 </template>
 <style lang="less">
   @import "./index.less";
-
 </style>
 <script>
   export default {
     data() {
       return {}
+    },
+    created(){
+      this.$get("/isadmin");
     },
     methods: {}
   }
