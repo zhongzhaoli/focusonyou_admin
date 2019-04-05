@@ -32,8 +32,8 @@
         </ul>
       </div>
     </nav>
-    <div class="text-center" v-if="loading">
-      <img class="loading" src="../../assets/loading_2.gif" alt="">
+    <div class="text-center loading_bg" v-if="loading">
+      <img class="loading" src="../../assets/loading.gif" alt="">
     </div>
     <div class="container h-100 mt-5">
         <div class="upload_img w-100 d-flex align-items-center justify-content-center flex-column" @click="cover_upload()">
@@ -100,7 +100,8 @@
         error_menu: "",
         error_start_time: "",
         error_end_time: "",
-        error_phone: ""
+        error_phone: "",
+        loading: false,
       }
     },
     created() {
@@ -128,6 +129,7 @@
             $("[data-menu]")[0].click();
         },
         cover_change(a){
+            this.loading = true;
             var that = this;
             var file = a.files[0];
             //判断是否是图片类型
@@ -161,10 +163,13 @@
             var that = this;
             arr.push(this.cover);
             arr.push(this.menu);
+            this.loading = true;
             this.$post('/takeout',{"cover": arr[0], "menu": arr[1], "name": this.name, "start_time": this.start_time, "end_time": this.end_time, "phone": this.phone}).then(mes => {
                 alert("提交成功");
+                this.loading = false;
                 this.init();
             }, mes => {
+                this.loading = false;
                 for (var i in mes.data) {
                     that["error_" + i] = mes.data[i][0];
                 }
@@ -207,6 +212,7 @@
                 cl_name.style.backgroundImage = 'url(' + base64 + ')';
                 // 回调函数返回base64的值
             }
+            this.loading = false;
             return base64;
         }
     }

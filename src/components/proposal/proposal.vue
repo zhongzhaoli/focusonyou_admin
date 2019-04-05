@@ -32,8 +32,8 @@
         </ul>
       </div>
     </nav>
-    <div class="text-center" v-if="loading">
-      <img class="loading" src="../../assets/loading_2.gif" alt="">
+    <div class="text-center loading_bg" v-if="loading">
+      <img class="loading" src="../../assets/loading.gif" alt="">
     </div>
     <div class="container d-flex h-100">
       <div class="w-100">
