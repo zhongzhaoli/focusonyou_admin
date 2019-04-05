@@ -8,6 +8,10 @@
   .loading {
     max-width: 50px;
   }
+
+  .loading2{
+    max-width: 200px;
+  }
   .loading_bg{
     width: 100%;
     height: 100%;
@@ -18,6 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 999999;
   }
 
   .float-right {

@@ -37,6 +37,12 @@
     <div class="text-center loading_bg" v-if="loading">
       <img class="loading" src="../../assets/loading.gif" alt="">
     </div>
+    <div class="container mt-5">
+      <div class="alert alert-info d-flex justify-content-between" role="alert">
+        <div>管理员：<span style="color: red;">{{ name }}</span> 你好！</div>
+        <div class="logout" @click="logout()">退出登录</div>
+      </div>
+    </div>
     <div class="container mt-5 h-100 index_div text-center">
       <router-link to="/appeal">
         <div class="fun_div d-flex align-items-center justify-content-center flex-column">
@@ -69,10 +75,14 @@
   @import "./index.less";
 </style>
 <script>
+  import {
+    setCookie, delCookie
+  } from '../../assets/js/cookie';
   export default {
     data() {
       return {
         loading: false,
+        name: ""
       }
     },
     created(){
@@ -80,9 +90,15 @@
       let that = this;
       this.$get("/isadmin").then(mes => {
         that.loading = false;
+        that.name = mes;
       });
     },
-    methods: {}
+    methods: {
+      logout(){
+        delCookie("api_token");
+        this.$router.push('/login');
+      }
+    }
   }
 
 </script>
