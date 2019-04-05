@@ -23,9 +23,11 @@
               <a class="nav-link" href="javascript:void(0)">上诉反馈</a>
             </li>
           </router-link>
+          <router-link to="/takeout">
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">周边外卖</a>
           </li>
+          </router-link>
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">树洞管理</a>
           </li>

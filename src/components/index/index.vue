@@ -23,15 +23,20 @@
               <a class="nav-link" href="javascript:void(0)">上诉反馈</a>
             </li>
           </router-link>
+          <router-link to="/takeout">
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">周边外卖</a>
           </li>
+          </router-link>
           <li class="nav-item">
             <a class="nav-link" href="javascript:void(0)">树洞管理</a>
           </li>
         </ul>
       </div>
     </nav>
+    <div class="text-center loading_bg" v-if="loading">
+      <img class="loading" src="../../assets/loading.gif" alt="">
+    </div>
     <div class="container mt-5 h-100 index_div text-center">
       <router-link to="/appeal">
         <div class="fun_div d-flex align-items-center justify-content-center flex-column">
@@ -66,10 +71,16 @@
 <script>
   export default {
     data() {
-      return {}
+      return {
+        loading: false,
+      }
     },
     created(){
-      this.$get("/isadmin");
+      this.loading = true;
+      let that = this;
+      this.$get("/isadmin").then(mes => {
+        that.loading = false;
+      });
     },
     methods: {}
   }
