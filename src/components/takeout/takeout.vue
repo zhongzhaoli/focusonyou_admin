@@ -167,8 +167,8 @@
             arr.push(this.menu);
             this.loading = true;
             this.$post('/takeout',{"cover": arr[0], "menu": arr[1], "name": this.name, "start_time": this.start_time, "end_time": this.end_time, "phone": this.phone}).then(mes => {
-                alert("提交成功");
                 this.loading = false;
+                alert("提交成功");
                 this.init();
                 $(".cover_img").remove();
                 $("[data-cover]").val("");
