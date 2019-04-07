@@ -170,6 +170,10 @@
                 alert("提交成功");
                 this.loading = false;
                 this.init();
+                $(".cover_img").remove();
+                $("[data-cover]").val("");
+                $(".menu_img").remove();
+                $("[data-menu]").val("");
             }, mes => {
                 this.loading = false;
                 for (var i in mes.data) {
