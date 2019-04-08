@@ -1,7 +1,9 @@
 <template class="w-100 h-100">
   <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light max-400-column">
-      <a class="navbar-brand" href="#">FocusOnYou 管理员后台</a>
+      <router-link to="/index">
+        <div class="navbar-brand">FocusOnYou 管理员后台</div>
+      </router-link>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
