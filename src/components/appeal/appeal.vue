@@ -37,7 +37,7 @@
     <div class="text-center loading_bg" v-if="loading">
       <img class="loading" src="../../assets/loading.gif" alt="">
     </div>
-    <div class="container d-flex h-100">
+    <div class="container d-flex h-100 flex-column">
       <div class="card mt-4" v-for="i in mes">
         <div class="card-header flex_space">
           <span>{{ (i.nickname) ? i.nickname : "匿名用户" }}</span>
