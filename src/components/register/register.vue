@@ -1,7 +1,7 @@
 <template class="w-100 h-100">
   <div class="container d-flex align-items-center justify-content-center h-100 flex-column">
     <div class="text-center" v-if="loading">
-      <img class="loading" src="../../assets/loading_2.gif" alt="">
+      <img class="loading2" src="../../assets/loading_2.gif" alt="">
     </div>
     <div class="" v-if="!loading">
       <h2 class="title text-center">FocusOnYou管理员系统</h2>
