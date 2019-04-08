@@ -6,7 +6,7 @@
 
 <style>
   .loading {
-    max-width: 50px;
+    max-width: 60px;
   }
 
   .loading2{
