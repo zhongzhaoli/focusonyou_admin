@@ -40,7 +40,7 @@
       <img class="loading" src="../../assets/loading.gif" alt="">
     </div>
     <div class="container mt-5 text-center">
-      <div><a href="javascript:void(0)" @click="show_all()">查看所有商家</a></div>
+      <div><a href="javascript:void(0)" @click="show_all()">查看所有商家</a><a class="ml-5" @click="refresh()" href="javascript:void(0)">刷新</a></div>
       <iframe class="border hide mt-5" src="http://focus_take.yuntunwj.com" height="500px" width="350px" frameborder="0"></iframe>
       <!-- <div class="col-lg-4">
         <div class="card" v-for="i in sj">
@@ -149,6 +149,9 @@
             this.error_start_time = "";
             this.error_end_time = "";
             this.error_phone = ""
+        },
+        refresh(){
+            $("iframe").attr("src", $("iframe").attr('src'));
         },
         cover_upload(){
             $("[data-cover]")[0].click();
