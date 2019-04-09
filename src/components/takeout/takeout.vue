@@ -105,6 +105,7 @@
             <button class="btn btn-primary" @click="takeout_upload()">上传</button>
         </div>
     </div>
+    <div class="mb-5"></div>
   </div>
 </template>
 <style lang="less">

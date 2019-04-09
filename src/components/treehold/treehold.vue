@@ -47,9 +47,29 @@
             <div class="text-center"> 
                 <button class="btn btn-primary mt-4" @click="create_treehold()">生成树洞</button>
             </div>
+            <h5 class="mt-5">已创建的树洞</h5>
+            <div class="has_tree w-100 mt-4">
+                 <div class="card" v-for="i in all_tree">
+                <div class="card-header d-flex justify-content-between">
+                    <div>{{ i.title }}</div>
+                    <div>{{ i.create_time }}</div>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                    <a class="link" :href="'http://tree.yuntunwj.com/index.html?' + i.id">http://tree.yuntunwj.com/index.html?{{ i.id }}</a>
+                    <footer class="blockquote-footer mt-3">操作者<cite title="Source Title">{{ i.operator }}</cite></footer>
+                    </blockquote>
+                </div>
+                </div>
+            </div>
         </div>
+        <div class="mb-5"></div>
     </div>
 </template>
+<style lang="less">
+  @import "./treehold.less";
+</style>
+
 <script>
 export default {
     data() {
@@ -58,18 +78,31 @@ export default {
         name: "",
         title: "",
         link: "",
+        all_tree: "",
       }
     },
     created(){
         this.title = "";
         this.link = "";
+        this.get_all_tree();
     },
     methods: {
         create_treehold(){
+            this.loading = true;
             this.$post("/treehold", {"title": this.title}).then(mes => {
                 this.link = "http://tree.yuntunwj.com/index.html?" + mes.id;
+                this.loading = false;
+                this.get_all_tree();
             }, mes => {
                 alert(mes.data.message);
+                this.loading = false;
+            })
+        },
+        get_all_tree(){
+            this.loading = true;
+            this.$get("/tree_all").then(mes => {
+                this.all_tree = mes;
+                this.loading = false;
             })
         }
     }
