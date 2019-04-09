@@ -6,6 +6,7 @@ import index from '@/components/index/index'
 import appeal from '@/components/appeal/appeal'
 import proposal from '@/components/proposal/proposal'
 import takeout from '@/components/takeout/takeout'
+import treehold from '@/components/treehold/treehold'
 
 
 Vue.use(Router)
@@ -44,6 +45,11 @@ export default new Router({
       path: '/takeout',
       name: 'takeout',
       component: takeout
+    },
+    {
+      path: '/treehold',
+      name: 'treehold',
+      component: treehold
     }
   ]
 })

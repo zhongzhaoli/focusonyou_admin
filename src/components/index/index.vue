@@ -26,13 +26,15 @@
             </li>
           </router-link>
           <router-link to="/takeout">
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">周边外卖</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">周边外卖</a>
+            </li>
           </router-link>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">树洞管理</a>
-          </li>
+          <router-link to="/treehold">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">树洞管理</a>
+            </li>
+          </router-link>
         </ul>
       </div>
     </nav>
@@ -64,7 +66,7 @@
           <div>周边外卖</div>
         </div>
       </router-link>
-      <router-link to="/proposal">
+      <router-link to="/treehold">
         <div class="fun_div d-flex align-items-center justify-content-center flex-column">
           <img src="../../assets/admin_index_4.png" alt="">
           <div>树洞管理</div>
