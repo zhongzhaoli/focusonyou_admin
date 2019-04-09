@@ -47,19 +47,20 @@
             <div class="text-center"> 
                 <button class="btn btn-primary mt-4" @click="create_treehold()">生成树洞</button>
             </div>
-            <h5 class="mt-5">已创建的树洞</h5>
+            <h5 class="mt-5" v-if="all_tree">已创建的树洞</h5>
             <div class="has_tree w-100 mt-4">
-                 <div class="card" v-for="i in all_tree">
-                <div class="card-header d-flex justify-content-between">
-                    <div>{{ i.title }}</div>
-                    <div>{{ i.create_time }}</div>
-                </div>
-                <div class="card-body">
-                    <blockquote class="blockquote mb-0">
-                    <a class="link" :href="'http://tree.yuntunwj.com/index.html?' + i.id">http://tree.yuntunwj.com/index.html?{{ i.id }}</a>
-                    <footer class="blockquote-footer mt-3">操作者<cite title="Source Title">{{ i.operator }}</cite></footer>
-                    </blockquote>
-                </div>
+                <div class="no_sj" v-if="all_tree.length == 0 && !loading">暂无树洞</div>
+                <div class="card" v-for="i in all_tree">
+                    <div class="card-header d-flex justify-content-between">
+                        <div>{{ i.title }}</div>
+                        <div>{{ i.create_time }}</div>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                        <a class="link" :href="'http://tree.yuntunwj.com/index.html?' + i.id">http://tree.yuntunwj.com/index.html?{{ i.id }}</a>
+                        <footer class="blockquote-footer mt-3">操作者<cite title="Source Title">{{ i.operator }}</cite></footer>
+                        </blockquote>
+                    </div>
                 </div>
             </div>
         </div>
