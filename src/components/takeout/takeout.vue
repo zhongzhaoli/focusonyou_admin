@@ -39,6 +39,28 @@
     <div class="text-center loading_bg" v-if="loading">
       <img class="loading" src="../../assets/loading.gif" alt="">
     </div>
+    <div class="container mt-5 text-center">
+      <div><a href="javascript:void(0)" @click="show_all()">查看所有商家</a></div>
+      <iframe class="border hide mt-5" src="http://focus_take.yuntunwj.com" height="500px" width="350px" frameborder="0"></iframe>
+      <!-- <div class="col-lg-4">
+        <div class="card" v-for="i in sj">
+          <img class="card-img-top" :src="i.cover" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title mb-0">{{ i.name }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">外卖开始时间：<span style="color: red;">{{ i.start_time }}</span></li>
+            <li class="list-group-item">外卖结束时间：<span style="color: red;">{{ i.end_time }}</span></li>
+            <li class="list-group-item">联系电话：<span style="color: red;">{{ i.phone }}</span></li>
+            <li class="list-group-item">操作者：<span style="color: red;">{{ i.operator }}</span></li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">删除此商家</a>
+            <a href="http://focus_take.yuntunwj.com/" class="card-link">查看详细</a>
+          </div>
+        </div>
+      </div> -->
+    </div>
     <div class="container h-100 mt-5">
         <div class="upload_img w-100 d-flex align-items-center justify-content-center flex-column" @click="cover_upload()">
             <img src="../../assets/cra.png" alt="">
@@ -106,6 +128,8 @@
         error_end_time: "",
         error_phone: "",
         loading: false,
+        sj: "",
+        show_all_type: false
       }
     },
     created() {
@@ -131,6 +155,16 @@
         },
         menu_upload(){
             $("[data-menu]")[0].click();
+        },
+        show_all(){
+            if(!this.show_all_type){
+              $("iframe").show("fast");
+              this.show_all_type = true;
+            }
+            else{
+              $("iframe").hide("fast");
+              this.show_all_type = false;
+            }
         },
         cover_change(a){
             this.loading = true;
@@ -176,6 +210,7 @@
                 $("[data-cover]").val("");
                 $(".menu_img").remove();
                 $("[data-menu]").val("");
+                $("iframe").attr("src", $("iframe").attr('src'));
             }, mes => {
                 this.loading = false;
                 for (var i in mes.data) {

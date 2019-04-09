@@ -25,6 +25,7 @@
     z-index: 999999;
   }
 
+
   .float-right {
     float: right;
   }
