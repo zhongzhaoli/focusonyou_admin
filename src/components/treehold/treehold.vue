@@ -42,7 +42,7 @@
             <img class="loading" src="../../assets/loading.gif" alt="">
         </div>
         <div class="container mt-5">
-            <input type="text" class="form-control w-100 text-center" v-model="title" placeholder="输入推文标题">
+            <input type="text" class="form-control w-100 text-center" v-model="title" placeholder="输入互动话题">
             <input type="text" disabled class="form-control w-100 text-center mt-4" v-model="link" placeholder="点击下方按钮生成树洞链接">
             <div class="text-center"> 
                 <button class="btn btn-primary mt-4" @click="create_treehold()">生成树洞</button>
