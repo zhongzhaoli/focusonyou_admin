@@ -211,7 +211,8 @@
                 $(".menu_img").remove();
                 $("[data-menu]").val("");
                 $("iframe").attr("src", $("iframe").attr('src'));
-                $("html").scrollTop = 0;
+                // $("html").scrollTop = 0;
+                $("#app > div").scrollTop = 0;
             }, mes => {
                 this.loading = false;
                 for (var i in mes.data) {
