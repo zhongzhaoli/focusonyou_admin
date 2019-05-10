@@ -28,7 +28,7 @@
             </li>
           </router-link>
           <router-link to="/proposal">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="javascript:void(0)">上诉反馈</a>
             </li>
           </router-link>
@@ -43,7 +43,7 @@
             </li>
           </router-link>
           <router-link to="/mother">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="javascript:void(0)">母亲节</a>
             </li>
           </router-link>
@@ -53,43 +53,49 @@
     <div class="text-center loading_bg" v-if="loading">
       <img class="loading" src="../../assets/loading.gif" alt>
     </div>
-    <div class="container d-flex h-100">
-      <div class="w-100">
-        <div class="card mt-4" v-for="i in mes">
-          <div class="card-header flex_space">
-            <span>{{ (i.nickname) ? i.nickname : "匿名用户" }}</span>
-            <span>{{ i.create_time }}</span>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title music">{{ "类型：" + i.type_text }}</h5>
-            <h5 class="card-title music">{{ (i.contact) ? "联系方式：" + i.contact : "联系方式：无" }}</h5>
-            <p class="card-text">{{ i.proposal }}</p>
-          </div>
+    <div class="container d-flex h-100 flex-column" v-if="!loading">
+      <div class="text-center mt-4">
+        <span>母亲节短信数量：<b style="color: red">{{ mes_length }}条</b></span>
+        <br>
+        <span>生成海报数量：<b style="color: red">{{ mes.poster }}张</b></span>
+      </div> 
+      <div class="card mt-4" v-for="i in mes.mes">
+        <div class="card-header flex_space">
+          <span>{{ i.nickname }}</span>
+          <span>{{ i.create_time }}</span>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title music">短信类型：{{ type[i.type] }}</h5>
+          <h5 class="card-title music">{{ (i.phone) ? "联系方式：" + i.phone : "联系方式：无" }}</h5>
+          <span>想说的话：{{ (i.remark) ? i.remark : '空' }}</span>
         </div>
       </div>
+      <div class="mb-5"></div>
     </div>
-    <div class="mb-5"></div>
   </div>
 </template>
-<style lang="less">
-@import "./proposal.less";
-</style>
 <script>
 export default {
   data() {
     return {
+      loading: false,
       mes: {},
-      loading: false
+      mes_length: 0,
+      type: ["占位符", "早安问候", "晚安陪伴", "触及真心"]
     };
   },
   created() {
     const that = this;
     this.loading = true;
-    this.$get("/appeal/proposal").then(mes => {
-      that.mes = mes;
+    this.$get("/mother_data").then(mes => {
+      this.mes = mes;
+      this.mes_length = mes.mes.length;
       this.loading = false;
     });
-  },
-  methods: {}
+  }
 };
 </script>
+<style>
+@import "./mother.less";
+</style>
+

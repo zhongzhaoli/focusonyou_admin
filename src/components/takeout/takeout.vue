@@ -42,6 +42,11 @@
               <a class="nav-link" href="javascript:void(0)">树洞管理</a>
             </li>
           </router-link>
+          <router-link to="/mother">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">母亲节</a>
+            </li>
+          </router-link>
         </ul>
       </div>
     </nav>

@@ -4,8 +4,15 @@
       <router-link to="/index">
         <div class="navbar-brand">FocusOnYou 管理员后台</div>
       </router-link>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
@@ -35,11 +42,16 @@
               <a class="nav-link" href="javascript:void(0)">树洞管理</a>
             </li>
           </router-link>
+          <router-link to="/mother">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0)">母亲节</a>
+            </li>
+          </router-link>
         </ul>
       </div>
     </nav>
     <div class="text-center loading_bg" v-if="loading">
-      <img class="loading" src="../../assets/loading.gif" alt="">
+      <img class="loading" src="../../assets/loading.gif" alt>
     </div>
     <div class="container d-flex h-100 flex-column">
       <div class="card mt-4" v-for="i in mes">
@@ -58,26 +70,24 @@
   </div>
 </template>
 <style lang="less">
-  @import "./appeal.less";
-
+@import "./appeal.less";
 </style>
 <script>
-  export default {
-    data() {
-      return {
-        mes: {},
-        loading: false
-      }
-    },
-    created() {
-      const that = this;
-      this.loading = true;
-      this.$get('/appeal/appeal').then(mes => {
-        that.mes = mes;
-        this.loading = false;
-      })
-    },
-    methods: {}
-  }
-
+export default {
+  data() {
+    return {
+      mes: {},
+      loading: false
+    };
+  },
+  created() {
+    const that = this;
+    this.loading = true;
+    this.$get("/appeal/appeal").then(mes => {
+      that.mes = mes;
+      this.loading = false;
+    });
+  },
+  methods: {}
+};
 </script>
