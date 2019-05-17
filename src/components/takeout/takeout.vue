@@ -250,7 +250,7 @@ export default {
       reader.onload = function(e) {
         var base64 = that.canvasDataURL(
           this.result,
-          { width: "400" },
+          {},
           "menu",
           $(".menu_img")[0]
         );
