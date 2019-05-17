@@ -236,7 +236,7 @@ export default {
       reader.onload = function(e) {
         that.canvasDataURL(
           this.result,
-          { width: "200" },
+          {},
           "cover",
           $(".cover_img")[0]
         );
