@@ -195,12 +195,12 @@ export default {
   },
   methods: {
     init() {
-      this.name = "123123";
-      this.start_time = "12:44";
-      this.end_time = "12:44";
-      this.af_start_time = "12:44";
-      this.af_end_time = "12:44";
-      this.phone = "13662648176";
+      this.name = "";
+      this.start_time = "";
+      this.end_time = "";
+      this.af_start_time = "";
+      this.af_end_time = "";
+      this.phone = "";
     },
     error_init() {
       this.error_name = "";
