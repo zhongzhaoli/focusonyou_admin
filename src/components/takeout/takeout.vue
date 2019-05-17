@@ -133,14 +133,17 @@
       </div>
       <div class="form-group mt-4">
         <label for="exampleInputEmail1">菜单</label>
-        <div
+        <br>
+        <div class="show_div"></div>
+        <!-- <div
           class="upload_img w-100 d-flex align-items-center justify-content-center flex-column menu_img_div"
-          @click="menu_upload()"
+          
         >
           <img src="../../assets/cra.png" alt>
           <span>点击上传菜单图</span>
           <div class="menu_img"></div>
-        </div>
+        </div> -->
+        <button class="btn btn-primary mt-3" @click="menu_upload()">添加一张菜单</button>
       </div>
       <small class="form-text text-danger">{{ error_menu }}</small>
       <input
@@ -166,8 +169,8 @@ export default {
     return {
       mes: {},
       loading: false,
-      cover: "",
-      menu: "",
+      cover: [],
+      menu: [],
       name: "",
       start_time: "",
       end_time: "",
@@ -180,6 +183,8 @@ export default {
       error_start_time: "",
       error_end_time: "",
       error_phone: "",
+      error_af_start_time: "",
+      error_af_end_time: "",
       loading: false,
       sj: "",
       show_all_type: false
@@ -190,12 +195,12 @@ export default {
   },
   methods: {
     init() {
-      this.name = "";
-      this.start_time = "";
-      this.end_time = "";
-      this.af_start_time = "";
-      this.af_end_time = "";
-      this.phone = "";
+      this.name = "123123";
+      this.start_time = "12:44";
+      this.end_time = "12:44";
+      this.af_start_time = "12:44";
+      this.af_end_time = "12:44";
+      this.phone = "13662648176";
     },
     error_init() {
       this.error_name = "";
@@ -310,8 +315,6 @@ export default {
         var w = img.width,
           h = img.height,
           scale = w / h;
-        w = obj.width || w;
-        h = obj.height || w / scale;
         var quality = 0.99; // 默认图片质量为0.7
         //生成canvas
         var canvas = document.createElement("canvas");
@@ -328,15 +331,24 @@ export default {
         if (obj.quality && obj.quality <= 1 && obj.quality > 0) {
           quality = obj.quality;
         }
+        console.log(w);
+        console.log(h);
+        console.log(scale);
         // quality值越小，所绘制出的图像越模糊
         base64 = canvas.toDataURL("image/jpeg", quality);
-        _this[key] = base64;
-        cl_name.style.backgroundImage = "url(" + base64 + ")";
-        // 回调函数返回base64的值
+        _this[key].push(base64);
+        if(key == "menu"){
+          var a = $("<div class='menu_img_div'></div>").appendTo($(".show_div"));
+          a[0].style.backgroundImage = "url("+base64+")";
+          a[0].style.height = (300 / scale) + "px";
+        }
+        else{
+          $(".cover_img")[0].style.backgroundImage = "url("+base64+")";
+        }
+        _this.loading = false;
       };
-      this.loading = false;
-      return base64;
     }
   }
 };
 </script>
+
