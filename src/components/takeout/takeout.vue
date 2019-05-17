@@ -127,8 +127,18 @@
         <small class="form-text text-danger">{{ error_af_end_time }}</small>
       </div>
       <div class="form-group mt-4">
-        <label for="exampleInputEmail1">商家电话</label>
-        <input type="phone" class="form-control" v-model="phone" placeholder="商家电话">
+        <label for="exampleInputEmail1">商家联系方式</label>
+        <div class="row">
+          <div class="col-md-3">
+            <select name="" id="" class="form-control" v-model="contact">
+              <option value="手机号">手机号</option>
+              <option value="微信">微信</option>
+            </select>
+          </div>
+          <div class="col-md-9">
+            <input type="phone" class="form-control" v-model="phone" placeholder="商家电话">
+          </div>
+        </div>
         <small class="form-text text-danger">{{ error_phone }}</small>
       </div>
       <div class="form-group mt-4">
@@ -176,6 +186,7 @@ export default {
       end_time: "",
       af_start_time: "",
       af_end_time: "",
+      contact: "",
       phone: "",
       error_name: "",
       error_cover: "",
@@ -201,6 +212,7 @@ export default {
       this.af_start_time = "";
       this.af_end_time = "";
       this.phone = "";
+      this.contact = "手机号"
     },
     error_init() {
       this.error_name = "";
@@ -280,6 +292,7 @@ export default {
         start_time: this.start_time,
         end_time: this.end_time,
         phone: this.phone,
+        contact: this.contact,
         af_start_time: this.af_start_time,
         af_end_time: this.af_end_time
       }).then(
