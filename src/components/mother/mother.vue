@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
         <ul class="navbar-nav">
           <router-link to="/index">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="javascript:void(0)">首页</a>
             </li>
           </router-link>
@@ -43,7 +43,7 @@
             </li>
           </router-link>
           <router-link to="/mother">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="javascript:void(0)">母亲节</a>
             </li>
           </router-link>
@@ -53,75 +53,49 @@
     <div class="text-center loading_bg" v-if="loading">
       <img class="loading" src="../../assets/loading.gif" alt>
     </div>
-    <div class="container mt-5">
-      <div class="alert alert-info d-flex justify-content-between" role="alert">
-        <div>
-          管理员：
-          <span style="color: red;">{{ name }}</span> 你好！
+    <div class="container d-flex h-100 flex-column" v-if="!loading">
+      <div class="text-center mt-4">
+        <span>母亲节短信数量：<b style="color: red">{{ mes_length }}条</b></span>
+        <br>
+        <span>生成海报数量：<b style="color: red">{{ mes.poster }}张</b></span>
+      </div> 
+      <div class="card mt-4" v-for="i in mes.mes">
+        <div class="card-header flex_space">
+          <span>{{ i.nickname }}</span>
+          <span>{{ i.create_time }}</span>
         </div>
-        <div class="logout" @click="logout()">退出登录</div>
+        <div class="card-body">
+          <h5 class="card-title music">短信类型：{{ type[i.type] }}</h5>
+          <h5 class="card-title music">{{ (i.phone) ? "联系方式：" + i.phone : "联系方式：无" }}</h5>
+          <span>想说的话：{{ (i.remark) ? i.remark : '空' }}</span>
+        </div>
       </div>
-    </div>
-    <div class="container mt-5 h-100 index_div text-center">
-      <router-link to="/appeal">
-        <div class="fun_div d-flex align-items-center justify-content-center flex-column">
-          <img src="../../assets/admin_index_1.png" alt>
-          <div>上诉管理</div>
-        </div>
-      </router-link>
-      <router-link to="/proposal">
-        <div class="fun_div d-flex align-items-center justify-content-center flex-column">
-          <img src="../../assets/admin_index_2.png" alt>
-          <div>上诉反馈</div>
-        </div>
-      </router-link>
-      <router-link to="/takeout">
-        <div class="fun_div d-flex align-items-center justify-content-center flex-column">
-          <img src="../../assets/admin_index_3.png" alt>
-          <div>周边外卖</div>
-        </div>
-      </router-link>
-      <router-link to="/treehold">
-        <div class="fun_div d-flex align-items-center justify-content-center flex-column">
-          <img src="../../assets/admin_index_4.png" alt>
-          <div>树洞管理</div>
-        </div>
-      </router-link>
-      <router-link to="/mother">
-        <div class="fun_div d-flex align-items-center justify-content-center flex-column">
-          <img src="../../assets/admin_index_5.png" alt>
-          <div>母亲节</div>
-        </div>
-      </router-link>
       <div class="mb-5"></div>
     </div>
   </div>
 </template>
-<style lang="less">
-@import "./index.less";
-</style>
 <script>
-import { setCookie, delCookie } from "../../assets/js/cookie";
 export default {
   data() {
     return {
       loading: false,
-      name: ""
+      mes: {},
+      mes_length: 0,
+      type: ["占位符", "早安问候", "晚安陪伴", "触及真心"]
     };
   },
   created() {
+    const that = this;
     this.loading = true;
-    let that = this;
-    this.$get("/isadmin").then(mes => {
-      that.loading = false;
-      that.name = mes;
+    this.$get("/mother_data").then(mes => {
+      this.mes = mes;
+      this.mes_length = mes.mes.length;
+      this.loading = false;
     });
-  },
-  methods: {
-    logout() {
-      delCookie("api_token");
-      this.$router.push("/login");
-    }
   }
 };
 </script>
+<style>
+@import "./mother.less";
+</style>
+

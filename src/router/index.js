@@ -7,6 +7,7 @@ import appeal from '@/components/appeal/appeal'
 import proposal from '@/components/proposal/proposal'
 import takeout from '@/components/takeout/takeout'
 import treehold from '@/components/treehold/treehold'
+import mother from '@/components/mother/mother';
 
 
 Vue.use(Router)
@@ -50,6 +51,11 @@ export default new Router({
       path: '/treehold',
       name: 'treehold',
       component: treehold
+    },
+    {
+      path: '/mother',
+      name: 'mother',
+      component: mother
     }
   ]
 })
